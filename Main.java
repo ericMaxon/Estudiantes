@@ -42,12 +42,13 @@ class Estudiantes{
     }*/
     
     public double calcularNF(){
-        Arrays.sort(notas);
+        Arrays.sort(notas);//Ordenamiento de forma ascendente
         int sum=0;
-        double conversion = (double)Math.ceil(notas.length/2);
-        //Acumulacion de notas altas de notasAltas
+        double conversion = (double)Math.ceil(notas.length/2);//Se le da el tamaño medio del arreglo, ejemplo: si es 10, entoces converison sera 5 y asi con cualquier otro tamaño
+        int tamanio = notas.length - 1;//Como el tamaño lo tengo que puede variar y el arreglo esta ordenado de forma ascendente cree una forma que obterner los valores del mas grandre al mas pequenio
+        //Acumulacion de notas altas
         for(int i = 0; i<conversion;i++){
-            sum+=notas[9-i];
+            sum+=notas[tamanio-i];
         }
         
         return sum/conversion;
@@ -62,6 +63,7 @@ class Estudiantes{
                 pos = i;
             }
         }
+        //Retorno de la posicion del estudiante con mejor nota final
         return pos;
     }
     
@@ -70,7 +72,7 @@ class Estudiantes{
         for(int i=0 ; i <estudiante.length; i++){
             if(estudiante[i].calcularNF()<60)
                 cont++;
-        }
+        }//Cuenta la cantidad de estudiantes con nota final menor a 60
         return cont;
     }
     
@@ -80,6 +82,7 @@ class Estudiantes{
             if(estudiante[i].calcularNF()>71)
                 cont++;
         }
+        //Cuenta la cantidad de estudiantes con nota final mayor a 71
         return cont;
     }
     
@@ -92,15 +95,16 @@ class Estudiantes{
     }
     
     public int traerN(int pos){
-        return notas[9-pos];
+    	int tamanio = notas.length - 1;
+        return notas[tamanio-pos];
     }
     
 }
 
 class Main{
     public static void main(String args[]){
-        final int SALON = 20;
-        final int CANT_NOTAS = 10;
+        final int SALON = 2;//Canitdad de estudiantes
+        final int CANT_NOTAS = 2;//canitdad de notas
         Estudiantes estud[] = new Estudiantes[SALON];
         Leer leamos = new Leer();
         int i, j, calif,pos;
@@ -117,6 +121,7 @@ class Main{
          
         pos = Estudiantes.mejorEs(estud);
         System.out.println("Estudiante con mejor calificacion: "+estud[pos].traerCed());
+        System.out.println("Con nota final de : "+estud[pos].calcularNF());
         System.out.println("Sus notas fueron: ");
         for(i = 0; i<CANT_NOTAS; i++){
             System.out.println("\t\t" + estud[pos].traerN(i));
