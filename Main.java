@@ -97,7 +97,7 @@ class Estudiantes{
     
 }
 
-class VeinteEstudiantes{
+class Main{
     public static void main(String args[]){
         final int SALON = 20;
         final int CANT_NOTAS = 10;
