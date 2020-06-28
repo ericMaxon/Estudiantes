@@ -1,7 +1,8 @@
 # Estudiantes
 
-Veinte estudiante de un grupo hicieron 10 pruebas (calificadas de 0 - 100)
+Veinte estudiantes de un grupo hicieron 10 pruebas (calificadas de 0 - 100)
 y la nota final es el promedio de las 5 notas mas altas.
+
 La informacion esta registrada de la sigueinte forma:
     -Nombre del estudiane
     -Numero de cedula
