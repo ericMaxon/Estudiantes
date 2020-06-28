@@ -20,15 +20,15 @@ import java.util.Arrays;
 class Estudiantes{
     private String nombre;
     private String cedula;
-    private int notas[];
+    private double notas[];
         
         Estudiantes(String nombre, String cedula, int cantNot){
             this.nombre = nombre;
             this.cedula = cedula;
-            notas = new int[cantNot];
+            notas = new double[cantNot];
         }
         
-    public void asignarNotas(int notas, int pos){
+    public void asignarNotas(double notas, int pos){
         this.notas[pos] = notas;
     }
     
@@ -43,8 +43,8 @@ class Estudiantes{
     
     public double calcularNF(){
         Arrays.sort(notas);//Ordenamiento de forma ascendente
-        int sum=0;
-        double conversion = (double)Math.ceil(notas.length/2);//Se le da el tamaño medio del arreglo, ejemplo: si es 10, entoces converison sera 5 y asi con cualquier otro tamaño
+        double sum=0;
+        
         int tamanio = notas.length - 1;//Como el tamaño lo tengo que puede variar y el arreglo esta ordenado de forma ascendente cree una forma que obterner los valores del mas grandre al mas pequenio
         //Acumulacion de notas altas
         for(int i = 0; i<conversion;i++){
@@ -94,7 +94,7 @@ class Estudiantes{
         return cedula;
     }
     
-    public int traerN(int pos){
+    public double traerN(int pos){
     	int tamanio = notas.length - 1;
         return notas[tamanio-pos];
     }
@@ -107,16 +107,22 @@ class Main{
         final int CANT_NOTAS = 2;//canitdad de notas
         Estudiantes estud[] = new Estudiantes[SALON];
         Leer leamos = new Leer();
+        
         int i, j, calif,pos;
+        String nombre, cedula;
+        double notas;
         System.out.println("Bienvenido a su sistema de estado de sus estudiantes");
         
         for(i =0; i<estud.length; i++){
-            estud[i] = new Estudiantes(leamos.DatosCad(), leamos.DatosCadCedula(), CANT_NOTAS);
-            System.out.println("Notas del estudiante: "+ estud[i].traerNombre());
-            for(j=0; j<CANT_NOTAS; j++){
-                System.out.print((j+1)+". ");
-                estud[i].asignarNotas(leamos.DatosE(), j);
-            }
+        	nombre = leamos.DatosCad();
+        	cedula = leamos.DatosCadCedula();
+          estud[i] = new Estudiantes(nombre, cedula, CANT_NOTAS);
+          System.out.println("Notas del estudiante: "+ estud[i].traerNombre());
+          for(j=0; j<CANT_NOTAS; j++){
+              System.out.print((j+1)+". ");
+              notas = leamos.DatosD();
+              estud[i].asignarNotas(notas, j);
+          }
         }
          
         pos = Estudiantes.mejorEs(estud);
